@@ -2,17 +2,7 @@ const express = 'express';
 const userdb = require('./userDb')
 const router = express.Router();
 
-function validateUserId(req, res, next) {
-    const { id } = req.params
-    userdb.getById(id)
-        .then(user => {
-            req.user = user
-            next()
-        })
-        .catch(error => {
-            res.status(400).json({ message: 'You put in the wrong ID dog' })
-        })
-}
+
 
 
 
@@ -53,8 +43,16 @@ router.put('/:id', (req, res) => {
 //custom middleware
 
 function validateUserId(req, res, next) {
-
-};
+    const { id } = req.params
+    userdb.getById(id)
+        .then(user => {
+            req.user = user
+            next()
+        })
+        .catch(error => {
+            res.status(400).json({ message: 'You put in the wrong ID dog' })
+        })
+}
 
 function validateUser(req, res, next) {
 
