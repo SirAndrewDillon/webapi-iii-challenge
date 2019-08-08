@@ -1,35 +1,74 @@
-const express = 'express';
-const userdb = require('./userDb')
+const express = require("express");
+
 const router = express.Router();
 
+const Users = require("./userDb");
+const Posts = require("../posts/postDb");
 
-
-
-
-router.post('/', (req, res) => {
-
+router.post("/", validateUser, (req, res) => {
+    Users.insert(req.body)
+        .then(newUser => {
+            res.status(200).json(newUser);
+        })
+        .catch(() => {
+            res.status(500).json({
+                error: "There was a server error while trying to add the new user."
+            });
+        });
 });
 
-router.post('/:id/posts', (req, res) => {
-
+// UNABLE TO CREATE A NEW POST... GETTING SERVER ERROR
+router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
+    Posts.insert(req.body)
+        .then(newPost => {
+            res.status(200).json(newPost);
+        })
+        .catch(() => {
+            res
+                .status(500)
+                .json({ error: `Server error while creating a new post.` });
+        });
 });
+
 
 router.get('/', (req, res) => {
-    userdb.get()
-        .then(user => {
-            res.status(200).json(user)
+    Users.get()
+        .then(users => {
+            res.status(200).json(users);
         })
-        .catch(error => {
-            res.status(500).json({ message: 'Chill dude, you messed up!' })
-        })
+        .catch(() => {
+            res.status(500).json({
+                error:
+                    "There was a server error while trying to retrieve the list of users."
+            });
+        });
 });
 
 router.get('/:id', validateUserId, (req, res) => {
-    res.status(200).json(req.user)
+    const id = req.params.id;
+    Users.getById(id)
+        .then(user => {
+            res.status(200).json(user);
+        })
+        .catch(() => {
+            res.status(500).json({
+                error: `There was a server error while trying to retrived user with id ${id}.`
+            });
+        });
 });
 
-router.get('/:id/posts', (req, res) => {
 
+router.get('/:id/posts', (req, res) => {
+    const id = req.params.id;
+    Users.getUserPosts(id)
+        .then(userPosts => {
+            res.status(200).json(userPosts);
+        })
+        .catch(() => {
+            res.status(500).json({
+                error: `Server error while trying to retreive posts of user with id ${id}.`
+            });
+        });
 });
 
 router.delete('/:id', (req, res) => {
