@@ -72,33 +72,61 @@ router.get('/:id/posts', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-
+    const id = req.params.id;
+    Users.remove(id)
+        .then(totalRecordsDeleted => {
+            res.status(200).json(totalRecordsDeleted);
+        })
+        .catch(() => {
+            res.status(500).json({
+                error: `There was a server error while trying to delete user with id ${id}.`
+            });
+        });
 });
 
 router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const update = req.body;
 
+    Users.update(id, update)
+        .then(count => {
+            res.status(200).json(count);
+        })
+        .catch(() => {
+            res
+                .status(200)
+                .json({ error: `There was a server error while updating that user.` });
+        });
 });
 
 //custom middleware
 
 function validateUserId(req, res, next) {
-    const { id } = req.params
-    userdb.getById(id)
-        .then(user => {
-            req.user = user
-            next()
-        })
-        .catch(error => {
-            res.status(400).json({ message: 'You put in the wrong ID dog' })
-        })
+    const id = req.params.id;
+    Users.getById(id).then(result => {
+        if (result) {
+            req.user = result;
+            next();
+        } else {
+            res.status(400).json({ message: "invalid user id" });
+        }
+    });
 }
 
 function validateUser(req, res, next) {
-
+    if (req.body.name) {
+        next();
+    } else {
+        res.status(400).json({ message: "missing required name field" });
+    }
 };
 
 function validatePost(req, res, next) {
-
+    if (req.body.text) {
+        next();
+    } else {
+        res.status(400).json({ message: "missing required text field" });
+    }
 };
 
 module.exports = router;
