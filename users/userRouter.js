@@ -1,9 +1,9 @@
 const express = require("express");
 
-const router = express.Router();
 
 const Users = require("./userDb");
 const Posts = require("../posts/postDb");
+const router = require('express').Router();
 
 router.post("/", validateUser, (req, res) => {
     Users.insert(req.body)
@@ -17,7 +17,7 @@ router.post("/", validateUser, (req, res) => {
         });
 });
 
-// UNABLE TO CREATE A NEW POST... GETTING SERVER ERROR
+
 router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
     Posts.insert(req.body)
         .then(newPost => {
@@ -30,21 +30,22 @@ router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
         });
 });
 
-
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     Users.get()
         .then(users => {
+            console.log(users)
             res.status(200).json(users);
         })
-        .catch(() => {
+        .catch((error) => {
+            console.log(error.message);
             res.status(500).json({
                 error:
-                    "There was a server error while trying to retrieve the list of users."
+                    "There was  a man from nantucket."
             });
         });
 });
 
-router.get('/:id', validateUserId, (req, res) => {
+router.get("/:id", validateUserId, (req, res) => {
     const id = req.params.id;
     Users.getById(id)
         .then(user => {
@@ -57,8 +58,7 @@ router.get('/:id', validateUserId, (req, res) => {
         });
 });
 
-
-router.get('/:id/posts', (req, res) => {
+router.get("/:id/posts", validateUserId, (req, res) => {
     const id = req.params.id;
     Users.getUserPosts(id)
         .then(userPosts => {
@@ -71,7 +71,7 @@ router.get('/:id/posts', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", validateUserId, (req, res) => {
     const id = req.params.id;
     Users.remove(id)
         .then(totalRecordsDeleted => {
@@ -84,7 +84,7 @@ router.delete('/:id', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put("/:id", validateUserId, (req, res) => {
     const id = req.params.id;
     const update = req.body;
 
@@ -119,7 +119,7 @@ function validateUser(req, res, next) {
     } else {
         res.status(400).json({ message: "missing required name field" });
     }
-};
+}
 
 function validatePost(req, res, next) {
     if (req.body.text) {
@@ -127,6 +127,6 @@ function validatePost(req, res, next) {
     } else {
         res.status(400).json({ message: "missing required text field" });
     }
-};
+}
 
 module.exports = router;

@@ -6,7 +6,7 @@ module.exports = {
     useNullAsDefault: true,
     client: 'sqlite3',
     connection: {
-      filename: './data/lambda.sqlite3'
+      filename: './data/blog.db3'
     }
   },
   migrations: {

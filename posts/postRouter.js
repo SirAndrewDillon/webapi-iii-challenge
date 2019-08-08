@@ -1,36 +1,17 @@
-const express = 'express';
+// const express = require("express");
 
-const router = express.Router()
+// const router = express.Router();
 
-const db = require('./postDb')
+// router.get("/", (req, res) => { });
 
+// router.get("/:id", (req, res) => { });
 
+// router.delete("/:id", (req, res) => { });
 
-// Get all posts
-router.get('/', (req, res) => {
-    db.get()
-        .then(posts => {
-            res.status(200).json(posts);
-        })
-        .catch(err => res.status(500).json({ error: err }));
-});
+// router.put("/:id", (req, res) => { });
 
-// Validate post id and then get post by id
-router.get('/:id', validatePostId, (req, res) => {
-    res.status(200).json(req.post);
-});
-
-router.delete('/:id', (req, res) => {
-
-});
-
-router.put('/:id', (req, res) => {
-
-});
-
-// custom middleware
+// // custom middleware
 
 
 
-
-module.exports = router;
+// module.exports = router;

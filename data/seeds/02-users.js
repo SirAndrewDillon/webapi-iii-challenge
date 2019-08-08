@@ -1,13 +1,13 @@
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
   return knex('users').insert([
-    { name: 'Frodo Baggins' }, // 1
-    { name: 'Samwise Gamgee' }, // 2
-    { name: 'Meriadoc Brandybuck' }, // 3
-    { name: 'Peregrin Took' }, // 4
-    { name: 'Mithrandir' }, // 5
-    { name: 'Boromir' }, // 6
-    { name: 'Legolas' }, // 7
-    { name: 'Gimli' }, // 8
-    { name: 'Aragorn' }, // 9
+    { name: 'Dr. Rumack' }, // 1
+    { name: 'Dr.Evil' }, // 2
+    { name: 'Peter Clemenza' }, // 3
+    { name: 'Walter Sobchak ' }, // 4
+    { name: 'Broomhilda von Shaft' }, // 5
+    { name: 'Indiana Jones ' }, // 6
+    { name: 'Snake Plissken ' }, // 7
+    { name: 'Buckaroo Banzai' }, // 8
+    { name: 'Frank Bullitt' }, // 9
   ]);
 };

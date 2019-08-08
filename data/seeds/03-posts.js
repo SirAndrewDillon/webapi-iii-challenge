@@ -1,50 +1,52 @@
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
   return knex('posts').insert([
     {
       user_id: 1,
       text:
-        'I wish the ring had never come to me. I wish none of this had happened.',
+        'I am serious. And don’t call me Shirley..',
     },
     {
       user_id: 1,
-      text: 'I think we should get off the road. Get off the road! Quick!',
+      text: 'Joey, do you like movies about gladiators?',
     },
-    { user_id: 1, text: 'Our business is our own.' },
+    { user_id: 1, text: 'Theres no reason to become alarmed, and we hope youll enjoy the rest of your flight. By the way, is there anyone on board who knows how to fly a plane?' },
     { user_id: 1, text: 'Can you protect me from yourself?' },
-    { user_id: 2, text: "I ain't been droppin' no eaves, sir! Promise!" }, // 5
+    { user_id: 2, text: "I'm a mog - half man, half dog. I'm my own best friend." }, // 5
     { user_id: 2, text: "Of course you are, and I'm coming with you!" }, // 6
     {
       user_id: 2,
       text:
-        "I made a promise, Mr Frodo. A promise. \"Don't you leave him Samwise Gamgee.\" And I don't mean to. I don't mean to.",
+        "We get the warhead and we hold the world ransom for…. One million dollars..",
     }, // 7
     {
       user_id: 2,
       text:
         " N-nothing important. That is, I heard a great deal about a ring, a Dark Lord, and something about the end of the world, but... Please, Mr. Gandalf, sir, don't hurt me. Don't turn me into anything... unnatural.",
     }, // 8
-    { user_id: 3, text: 'Well, that rules you out, Pip.' }, // 9
+    { user_id: 3, text: 'Leave the gun. Take the cannoli.' }, // 9
     { user_id: 4, text: "We've had one yes. What about second breakfast?" }, // 10
     {
       user_id: 4,
       text:
-        'You need people of intelligence on this sort of mission...quest...thing.',
+        'That rug really tied the room together, did it not?”',
     }, // 11
     {
       user_id: 5,
       text:
-        'A wizard is never late, Frodo Baggins. Nor is he early. He arrives precisely when he means to.',
+        'Fat, drunk, and stupid is no way to go through life, son."',
     },
     {
       user_id: 5,
       text:
-        'One ring to rule them all. One ring to find them. One ring to bring them all and in the darkness bind them!',
+        'I have come here to chew bubblegum and kick ass... and Im all out of bubblegum.',
     },
-    { user_id: 5, text: 'Is it secret?! Is it safe?!' },
+    {
+      user_id: 5, text: 'Roses are red, violets are blue. Im a schizophrenic and so am I.'
+    },
     {
       user_id: 5,
       text:
-        'A Balrog. A demon of the ancient world. This foe is beyond any of you. Run!',
+        'Bleeker’s mom was possibly attractive once, but now she looks like a Hobbit. You know, the fat one, that was in the Goonies.',
     },
     { user_id: 5, text: 'When in doubt, follow your nose.' }, // 16
     { user_id: 5, text: 'YOU SHALL NOT PASS!' }, // 17
@@ -52,12 +54,12 @@ exports.seed = function(knex, Promise) {
     {
       user_id: 5,
       text:
-        'All you have to do is decide what to do with the time that is given to you.',
+        'Ladies and gentlemen, I can envision a day when the brains of brilliant men can be kept alive in the bodies of dumb people!',
     }, // 19
     {
       user_id: 5,
       text:
-        'Do not be so quick to deal out death and judgement. Even the very wise do not see all ends.',
+        'Did you all take Stupid Pills this morning?',
     }, // 20
     {
       user_id: 5,
@@ -67,7 +69,7 @@ exports.seed = function(knex, Promise) {
     {
       user_id: 6,
       text:
-        'One does not simply walk into Mordor. Its black gates are guarded by more than just orcs. There is evil there that does not sleep. And the Great Eye, is ever watchful. It is a barren wasteland, riddled with fire, ash and dust. The very air you breathe is a poisonous fume. Not with ten thousand men could you do this. It is folly!',
+        'I have strong feelings about gun control. If theres a gun around, I want to be controlling it.',
     },
     {
       user_id: 6,
@@ -78,25 +80,25 @@ exports.seed = function(knex, Promise) {
     {
       user_id: 7,
       text:
-        'Lembas! Elvish waybread. One small bite is enough to fill a stomach of a grown man.',
+        'You can put a cat in an oven, but that dont make a biscuit.',
     },
     {
       user_id: 7,
       text:
-        'This is no mere Ranger. He is Aragorn, son of Arathorn. You owe him your allegiance.',
+        'Truth hurts. Maybe not as much as jumping on a bicycle with a seat missing, but it hurts. ',
     },
     {
       user_id: 7,
       text:
-        'Have you heard nothing what Lord Elrond has said? The ring must be destroyed!',
+        'Between two evils I always pick the one I never tried before. ',
     },
-    { user_id: 8, text: 'Nobody tosses a Dwarf!' }, // 28
+    { user_id: 8, text: 'Stupid is as stupid does. ' }, // 28
     {
       user_id: 8,
       text:
-        'I will be dead before I see the ring in the hands of an elf! Never trust an elf!',
+        'Nobody makes me bleed my own blood. Nobody!!',
     }, // 29
-    { user_id: 8, text: "And I suppose you think you're the one to do it!" }, // 30
+    { user_id: 8, text: "I have many leather bound books and my apartment smells like rich mahogany." }, // 30
     {
       user_id: 8,
       text:
@@ -104,21 +106,21 @@ exports.seed = function(knex, Promise) {
     },
     {
       user_id: 8,
-      text: 'I asked for one hair from her golden head... she gave me three.',
+      text: 'I Have Nipples, Greg. Could You Milk Me?',
     }, // 32
     {
       user_id: 9,
       text:
-        "We will not abandon Merry and Pippin to torment and death. Not while we have strength left. Leave all that can be spared behind. We travel light. Let's hunt some orc.",
+        "How’d You Get The Beans Above The Frank?",
     },
     {
       user_id: 9,
       text:
-        'You cannot wield it! None of us can! The One Ring answers to Sauron alone. It has no other master.',
+        'If Peeing Your Pants Is Cool, Consider Me Miles Davis.',
     },
     {
       user_id: 9,
-      text: "You draw too much attention to yourself, 'Mister Underhill'.",
+      text: "Fat Guy In A Little Coat. Fat Guy In A Little Coat.",
     }, // 35
     {
       user_id: 9,
@@ -127,12 +129,12 @@ exports.seed = function(knex, Promise) {
     {
       user_id: 9,
       text:
-        'I would have gone with you to the end, into the very fires of Mordor.',
+        'The Ratio Of People To Cake Is Too Big.',
     }, // 37
     {
       user_id: 9,
       text:
-        'Indeed. I can avoid being seen, if I wish, but to disappear entirely, that is a rare gift.',
+        'I Once Thought I Had Mono For An Entire Year. It Turned Out I Was Just Really Bored.',
     },
   ]);
 };

@@ -1,17 +1,15 @@
-const express = require('express')
-
+const express = require("express");
+const userRouter = require("./users/userRouter");
+// const postsRouter = require("./posts/postRouter");
 const server = express();
 
-const router = require('./users/userRouter')
+server.use(express.json());
+server.use("/users", userRouter);
+// server.use("/posts", postsRouter);
+server.use(logger);
 
-// const postsRouter = require("./posts/postRouter")
-
-
-server.use(logger)
-server.use('/user', userRouter)
-
-server.get('/', (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`)
+server.get("/", logger, (req, res) => {
+  res.send(`<h1>I’d rather laugh with the sinners than cry with the saints, the sinners are much more fun.</h1>`);
 });
 
 //custom middleware
@@ -20,7 +18,9 @@ function logger(req, res, next) {
   console.log(
     `You sent the ${req.method} method to ${req.url} at ${new Date()}.`
   );
-  next()
-};
+  next();
+}
+
+// server.listen(8000, () => console.log("\nServer listening on port 8000... \n"));
 
 module.exports = server;
