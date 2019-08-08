@@ -2,7 +2,7 @@ const express = 'express';
 
 const router = express.Router();
 
-const userdb = require('./userDb')
+const Posts = require('./postDb.js')
 // endpoints when url begins with /api/posts
 router.get('/', (req, res) => {
     db.get()
@@ -37,14 +37,7 @@ router.put('/:id', (req, res) => {
 
 // custom middleware
 
-function validateUserId(req, res, next) {
-    req.user = req.params.id;
-    if (req.user) {
-        next();
-    } else {
-        res.status(400).json({ message: "invalid user id" });
-    }
-}
+
 
 
 module.exports = router;
