@@ -1,30 +1,23 @@
 const express = 'express';
 
-const router = express.Router();
+const router = express.Router()
 
-const Posts = require('./postDb.js')
-// endpoints when url begins with /api/posts
+const db = require('./postDb')
+
+
+
+// Get all posts
 router.get('/', (req, res) => {
     db.get()
-        .then(users => {
-            res.status(200).json(users);
+        .then(posts => {
+            res.status(200).json(posts);
         })
         .catch(err => res.status(500).json({ error: err }));
 });
 
-// /api/posts/:id
-router.get('/:id', (req, res) => {
-    const id = req.params.id;
-
-    db.get(id)
-        .then(user => {
-            if (!user) {
-                res.status(404).json({ error: 'User not found' });
-            } else {
-                res.status(200).json(user);
-            }
-        })
-        .catch(err => res.status(500).json({ error: err }));
+// Validate post id and then get post by id
+router.get('/:id', validatePostId, (req, res) => {
+    res.status(200).json(req.post);
 });
 
 router.delete('/:id', (req, res) => {
