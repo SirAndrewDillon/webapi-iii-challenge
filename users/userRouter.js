@@ -19,8 +19,8 @@ router.post('/', requireLog.validateUser, async (req, res) => {
 
 router.post(
 	'/:id/posts',
-	requireLog.validatepost,
-	requireLog.validateuserid,
+	requireLog.validatePost,
+	requireLog.validateUserId,
 	async (req, res) => {
 		try {
 			let post = { ...req.body, user_id: req.params.id }
@@ -47,12 +47,12 @@ router.get('/', async (req, res) => {
 	}
 })
 
-router.get('/:id', requireLog.validateuserid, async (req, res) => {
+router.get('/:id', requireLog.validateUserId, async (req, res) => {
 	try {
 		const user = await db_users.getById(req.params.id)
 		user
 			? res.status(200).json(user)
-			: res.status(404).json({ message: `No users found!` })
+			: res.status(404).json({ message: `No humans found!` })
 	} catch (err) {
 		res
 			.status(500)
@@ -93,15 +93,15 @@ router.delete(
 
 router.put(
 	'/:id',
-	requireLog.validateuser,
-	requireLog.validateuserid,
+	requireLog.validateUser,
+	requireLog.validateUserId,
 	async (req, res) => {
 		try {
 			;(await db_users.update(req.params.id, req.body))
 				? res.status(200).json({ id: req.params.id, ...req.body })
-				: res.status(404).json({ message: `No users found!` })
+				: res.status(404).json({ message: `No humans found alive!` })
 		} catch (err) {
-			res.status(500).json({ error: `Error: Server conflict upadating user!` })
+			res.status(500).json({ error: `Error: Server conflict updating humans!` })
 		}
 	}
 )
